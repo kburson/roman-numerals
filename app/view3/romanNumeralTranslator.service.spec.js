@@ -36,6 +36,27 @@ describe('romanNumeralTranslatorService', function() {
             expect(returnedValue).toBe('I');
 
         });
+         function wrappedIt(input, output) {
+            it('should return ' + output + ' if input is ' + input, function() {
+                var returnedValue = romanNumeralTranslatorService.translate(input);
+                expect(returnedValue).toBe(output);
+            });
+        }
+
+        var objectofIO = {
+            '100': 'C',
+            '135': 'CXXXV',
+            '193': 'CXCIII',
+            '235': 'CCXXXV',
+            '418': 'CDXVIII',
+            '490': 'XD',
+            '985': 'CMLXXXV',
+            '3500': 'MMMD',
+            '3888': 'MMMDCCCLXXXVIII'
+        }
+        angular.forEach(objectofIO, function(output, input) {
+            wrappedIt(input, output);
+        });
         it('should return XXXIX if input is 39', function() {
 
             var returnedValue = romanNumeralTranslatorService.translate(39);
